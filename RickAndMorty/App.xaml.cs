@@ -7,7 +7,8 @@ namespace RickAndMorty
 
         public App()
         {            
-            InitializeComponent();            
+            InitializeComponent();
+            Device.SetFlags(new[] { "Shapes_Experimental" });
             MainPage = new AppShell();
         }
 
