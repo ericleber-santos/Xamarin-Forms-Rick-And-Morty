@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace RickAndMorty.Data
+namespace RickAndMorty.Repository
 {
     public interface IRepository<T> where T : class, new()
     {       

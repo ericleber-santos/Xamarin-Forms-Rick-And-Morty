@@ -1,41 +1,42 @@
-﻿using Refit;
-using RickAndMorty.Models.Json;
+﻿using RickAndMorty.Models.Json;
 using RickAndMorty.Services.Rest;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RickAndMorty.ViewModels
 {
-    public class EpisodeViewModel : BaseViewModel
+    public class CharacterViewModel : BaseViewModel
     {
-        public ObservableCollection<EpisodeData> EpisodesCollection { get; set; }
+        public ObservableCollection<CharacterResult> CharactersCollection { get; set; }
         public ICommand ItemSelectionChangedCommand => new Command(async () => await ItemSelectionChanged());
 
-        private EpisodeData selectedEpisode;
+        private CharacterResult selectedCharacter;
 
-        public EpisodeData SelectedEpisode
+        public CharacterResult SelectedCharacter
         {
             get
             {
-                return selectedEpisode;
+                return selectedCharacter;
             }
             set
             {
-                SetProperty(ref selectedEpisode, value);
+                SetProperty(ref selectedCharacter, value);
             }
         }
 
-        public EpisodeViewModel()
+        public CharacterViewModel()
         {
-            this.EpisodesCollection = new ObservableCollection<EpisodeData>();
+            this.CharactersCollection = new ObservableCollection<CharacterResult>();
         }
 
-        public async Task GetAllEpisodes()
-        {            
+        public async Task GetAllCharacters()
+        {
 
             if (IsBusy)
                 return;
@@ -44,12 +45,12 @@ namespace RickAndMorty.ViewModels
 
             try
             {
-                this.EpisodesCollection.Clear();
-                var episodios = await EpisodeService.GetAll();
+                this.CharactersCollection.Clear();
+                var characters = await CharacterService.GetAll();
 
-                foreach (var episodio in episodios.results)
-                {                   
-                    EpisodesCollection.Add(episodio);
+                foreach (var character in characters.results)
+                {
+                    CharactersCollection.Add(character);
                 }
             }
             catch (Exception ex)
@@ -64,7 +65,7 @@ namespace RickAndMorty.ViewModels
 
         async Task ItemSelectionChanged()
         {
-            if (selectedEpisode == null)
+            if (selectedCharacter == null)
             {
                 return;
             }

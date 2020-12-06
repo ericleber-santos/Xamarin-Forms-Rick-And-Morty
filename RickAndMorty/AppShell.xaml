@@ -22,6 +22,6 @@
         </ResourceDictionary>
     </Shell.Resources>
     <TabBar>
-        <ShellContent Title="Episodes" Icon="icon.png" Route="EpisodesPage" ContentTemplate="{DataTemplate local:EpisodesPage}" />
+        <ShellContent Title="Characters" Icon="icon.png" Route="CharactersPage" ContentTemplate="{DataTemplate local:CharactersPage}" />
     </TabBar>
 </Shell>

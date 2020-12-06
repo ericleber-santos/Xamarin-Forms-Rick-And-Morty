@@ -1,4 +1,4 @@
-﻿using RickAndMorty.Data;
+﻿using RickAndMorty.Repository;
 using RickAndMorty.Models;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"            
-             x:Class="RickAndMorty.Views.EpisodesPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RickAndMorty.Views.CharactersPage">
     <ContentPage.Resources>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -22,7 +22,7 @@
     <StackLayout>
         <CollectionView Margin="5"
                     x:Name="users"
-                    ItemsSource="{Binding EpisodesCollection}"                        
+                    ItemsSource="{Binding CharactersCollection}"                        
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedEpisode}"                
                     SelectionChangedCommand="{Binding ItemSelectionChangedCommand}">
@@ -54,18 +54,28 @@
                                         FontAttributes="Bold" />
                                     <Label  Text="Email:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding air_date}" 
+                                    <Label  Text="{Binding status}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
                                     <Label  Text="Website:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding episode}" 
+                                    <Label  Text="{Binding species}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <!--<Label  Text="{Binding characters}" 
+                                    <Label  Text="{Binding type}" 
                                         FontSize="Small" 
-                                        FontAttributes="Bold" />-->
-                                    <!--<Image Source="{Binding url}" HeightRequest="100" Aspect="AspectFit"/>-->                                    
+                                        FontAttributes="Bold" />
+                                    <Label  Text="{Binding gender}" 
+                                        FontSize="Small" 
+                                        FontAttributes="Bold" />
+                                   
+                                    <Image Source="{Binding image}" 
+                                           HeightRequest="100" 
+                                           Aspect="AspectFit"/>
+
+                                    <Label  Text="{Binding url}" 
+                                        FontSize="Small" 
+                                        FontAttributes="Bold" />
                                     <Label  Text="{Binding created}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />

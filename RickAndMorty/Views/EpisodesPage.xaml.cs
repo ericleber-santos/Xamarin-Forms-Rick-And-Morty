@@ -16,7 +16,7 @@ namespace RickAndMorty.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await _viewModel.EpisodesDownload();
+            await _viewModel.GetAllEpisodes();
         }
     }
 }

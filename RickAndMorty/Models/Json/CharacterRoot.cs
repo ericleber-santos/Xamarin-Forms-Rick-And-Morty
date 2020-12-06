@@ -4,9 +4,9 @@ using System.Text;
 
 namespace RickAndMorty.Models.Json
 {
-    public class EpisodeRoot
+    public class CharacterRoot
     {
         public Info info { get; set; }
-        public List<EpisodeData> results { get; set; }
+        public List<CharacterResult> results { get; set; }
     }
 }
