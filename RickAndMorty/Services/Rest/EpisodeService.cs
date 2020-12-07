@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace RickAndMorty.Services.Rest
 {
-    public static class EpisodeService 
+    public class EpisodeService : IEpisodeService
     {
-        private static IEpisodeService _episodeService = RestService.For<IEpisodeService>(Constantes.URL_BASE);
+        private readonly IEpisodeService _episodeService;
 
-        public static async Task<EpisodeRoot> GetAll()
+        public EpisodeService()
+        {
+            _episodeService = RestService.For<IEpisodeService>(Constantes.URL_BASE);
+        }
+
+        public async Task<EpisodeRoot> GetAll()
         {
             try
             {
-                var usuariosRetorno = await _episodeService.GetAll();
-
-
-                return usuariosRetorno;
+                return await _episodeService.GetAll(); 
             }
             catch (Exception ex)
             {
@@ -28,7 +30,7 @@ namespace RickAndMorty.Services.Rest
             return null;
         }
 
-        public static async Task<EpisodeData> GetById(int id)
+        public async Task<EpisodeData> GetById(int id)
         {
             try
             {

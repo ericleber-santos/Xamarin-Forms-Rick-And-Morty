@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace RickAndMorty.Services.Rest
 {
-    public  class CharacterService
+    public  class CharacterService : ICharacterService
     {
-        private static ICharacterService _characterService = RestService.For<ICharacterService>(Constantes.URL_BASE);
+        private  readonly ICharacterService _CharacterService;
 
-        public static async Task<CharacterRoot> GetAll()
+        public CharacterService()
+        {
+            _CharacterService = RestService.For<ICharacterService>(Constantes.URL_BASE);
+        }
+
+        public async Task<CharacterRoot> GetAll()
         {
             try
             {
-                var usuariosRetorno = await _characterService.GetAllCharacters();
-
-
-                return usuariosRetorno;
+                await Task.Delay(20);
+                return await _CharacterService.GetAll(); 
             }
             catch (Exception ex)
             {
@@ -28,11 +31,11 @@ namespace RickAndMorty.Services.Rest
             return null;
         }
 
-        public static async Task<CharacterRoot> GetById(int id)
+        public async Task<CharacterRoot> GetById(int id)
         {
             try
             {
-                return await _characterService.GetById(id);
+                return await _CharacterService.GetById(id);
             }
             catch (Exception ex)
             {
@@ -40,6 +43,6 @@ namespace RickAndMorty.Services.Rest
             }
 
             return null;
-        }
+        }      
     }
 }

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RickAndMorty.Views.CharactersPage">
+             x:Class="RickAndMorty.Views.CharactersPage"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms">
     <ContentPage.Resources>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -20,76 +21,99 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout>
-        <CollectionView Margin="5"
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" Margin="10">
+            <CollectionView Margin="5"
                     x:Name="users"
                     ItemsSource="{Binding CharactersCollection}"                        
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedEpisode}"                
                     SelectionChangedCommand="{Binding ItemSelectionChangedCommand}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="1"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Frame  HasShadow="True"
-                            BorderColor="LightSteelBlue" 
-                            Padding="5" 
-                            CornerRadius="5" 
-                            BackgroundColor="Transparent">
-                            <StackLayout Padding="5" Spacing="0">
-                                <FlexLayout Direction="Column" 
+                <CollectionView.EmptyView>
+                    <Grid                        
+                        Padding="26"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        RowDefinitions="2*, *"
+                        VerticalOptions="Center">
+
+                        <forms:AnimationView
+                            Animation="{Binding EmptyImage}"
+                            AutoPlay="True"
+                            HeightRequest="30"
+                            HorizontalOptions="FillAndExpand"
+                            Loop="True"
+                            VerticalOptions="FillAndExpand"
+                            WidthRequest="30" />
+
+                        <Label
+                            Grid.Row="1"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding EmptyMessage}"
+                            VerticalOptions="Center" />
+
+                    </Grid>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Frame  HasShadow="True"
+                                    BorderColor="LightSteelBlue" 
+                                    Padding="5" 
+                                    CornerRadius="5" 
+                                    BackgroundColor="Transparent">
+                                <StackLayout Padding="5" Spacing="0">
+                                    <FlexLayout Direction="Column" 
                                         AlignItems="Start" 
                                         JustifyContent="Start">
-                                    <Label  Text="Name:" 
+                                        <Label  Text="Name:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding name}" 
+                                        <Label  Text="{Binding name}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <Label  Text="Email:" 
+                                        <Label  Text="Email:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding status}" 
+                                        <Label  Text="{Binding status}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <Label  Text="Website:" 
+                                        <Label  Text="Website:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding species}" 
+                                        <Label  Text="{Binding species}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <Label  Text="{Binding type}" 
+                                        <Label  Text="{Binding type}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <Label  Text="{Binding gender}" 
+                                        <Label  Text="{Binding gender}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                   
-                                    <Image Source="{Binding image}" 
+
+                                        <Image Source="{Binding image}" 
                                            HeightRequest="100" 
                                            Aspect="AspectFit"/>
 
-                                    <Label  Text="{Binding url}" 
+                                        <Label  Text="{Binding url}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <Label  Text="{Binding created}" 
+                                        <Label  Text="{Binding created}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                </FlexLayout>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <ActivityIndicator x:Name="activityIndicator"
-                       Color="Orange"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="Fill"
-                       IsRunning="{Binding IsBusy}"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </StackLayout>
 </ContentPage>

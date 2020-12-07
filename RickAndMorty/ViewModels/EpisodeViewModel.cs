@@ -1,9 +1,9 @@
-﻿using Refit;
-using RickAndMorty.Models.Json;
+﻿using RickAndMorty.Models.Json;
 using RickAndMorty.Services.Rest;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,6 +12,20 @@ namespace RickAndMorty.ViewModels
 {
     public class EpisodeViewModel : BaseViewModel
     {
+        private string _emptyMessage;
+        public string EmptyMessage
+        {
+            get => _emptyMessage;
+            set => SetProperty(ref _emptyMessage, value);
+        }
+
+        private string _emptyImage;
+        public string EmptyImage
+        {
+            get => _emptyImage;
+            set => SetProperty(ref _emptyImage, value);
+        }
+                
         public ObservableCollection<EpisodeData> EpisodesCollection { get; set; }
         public ICommand ItemSelectionChangedCommand => new Command(async () => await ItemSelectionChanged());
 
@@ -29,12 +43,18 @@ namespace RickAndMorty.ViewModels
             }
         }
 
-        public EpisodeViewModel()
+        public ICommand RefreshCommand { get; }
+
+        private readonly IEpisodeService _episodeService;
+
+        public EpisodeViewModel(IEpisodeService episodeService)
         {
+            _episodeService = episodeService;
             this.EpisodesCollection = new ObservableCollection<EpisodeData>();
+            RefreshCommand = new Command(ExecuteRefreshCommand);
         }
 
-        public async Task GetAllEpisodes()
+        public async Task GetAllEpisodesAsync()
         {            
 
             if (IsBusy)
@@ -42,10 +62,13 @@ namespace RickAndMorty.ViewModels
 
             IsBusy = true;
 
+            EmptyMessage = "Loading...";
+            EmptyImage = "mortycryloader.json";
+
             try
             {
                 this.EpisodesCollection.Clear();
-                var episodios = await EpisodeService.GetAll();
+                var episodios = await _episodeService.GetAll().ConfigureAwait(false); 
 
                 foreach (var episodio in episodios.results)
                 {                   
@@ -60,26 +83,37 @@ namespace RickAndMorty.ViewModels
             {
                 IsBusy = false;
             }
+
+            EmptyMessage = "Oops, episode not found!";
+            EmptyImage = "";
         }
 
         async Task ItemSelectionChanged()
         {
             if (selectedEpisode == null)
-            {
                 return;
-            }
-            else
+
+            try
             {
-                try
-                {
-                    //await Shell.Current.Navigation.PushAsync(new EpisodeDetailPage(selectedEpisode), true);
-                    //selectedEpisode = null;
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e);
-                }
+                //await Shell.Current.Navigation.PushAsync(new EpisodeDetailPage(selectedEpisode), true);
+                //selectedEpisode = null;
             }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+        }
+
+        private async void ExecuteRefreshCommand()
+        {
+            await GetAllEpisodesAsync();
+        }
+
+        public async override Task InitializeAsync()
+        {
+            if (EpisodesCollection.Any())
+                return;
+            await GetAllEpisodesAsync().ConfigureAwait(false);
         }
 
     }

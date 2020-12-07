@@ -1,4 +1,7 @@
-﻿using RickAndMorty.ViewModels;
+﻿using RickAndMorty.Services;
+using RickAndMorty.Services.Rest;
+using RickAndMorty.ViewModels;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RickAndMorty.Views
@@ -10,13 +13,20 @@ namespace RickAndMorty.Views
         public EpisodesPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new EpisodeViewModel();
+            var episodeService = DependencyService.Get<IEpisodeService>();
+            BindingContext = _viewModel = new EpisodeViewModel(episodeService);
         }
 
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await _viewModel.GetAllEpisodes();
+            await OnAppearingAsync();
+        }
+
+        async Task OnAppearingAsync()
+        {
+            if (BindingContext is IInitialize _viewModel)
+                await _viewModel.InitializeAsync().ConfigureAwait(false);
         }
     }
 }

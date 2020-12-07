@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
+using RickAndMorty.Services;
+using System.Threading.Tasks;
 
 namespace RickAndMorty.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
-    {       
-        public IRepository<Episode> episodeRep => DependencyService.Get<IRepository<Episode>>() ?? new Repository<Episode>();
-
+    public class BaseViewModel : INotifyPropertyChanged, IInitialize
+    {  
         bool isBusy = false;
         public bool IsBusy
         {
@@ -38,6 +38,17 @@ namespace RickAndMorty.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+        public virtual Task InitializeAsync()
+        {
+            return Task.CompletedTask;
+        }
+
+        bool isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set { SetProperty(ref isRefreshing, value); }
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -48,7 +59,7 @@ namespace RickAndMorty.ViewModels
                 return;
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }       
         #endregion
     }
 }

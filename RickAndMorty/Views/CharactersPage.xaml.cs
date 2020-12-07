@@ -1,11 +1,12 @@
-﻿using RickAndMorty.ViewModels;
-
+﻿using RickAndMorty.Services;
+using RickAndMorty.Services.Rest;
+using RickAndMorty.ViewModels;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace RickAndMorty.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharactersPage : ContentPage
     {
         readonly CharacterViewModel _viewModel;
@@ -13,13 +14,20 @@ namespace RickAndMorty.Views
         public CharactersPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new CharacterViewModel();
+            var characterService = DependencyService.Get<ICharacterService>();
+            BindingContext = _viewModel = new CharacterViewModel(characterService);
         }
 
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await _viewModel.GetAllCharacters();
+            await OnAppearingAsync();
+        }
+
+        async Task OnAppearingAsync()
+        {
+            if (BindingContext is IInitialize _viewModel)
+                await _viewModel.InitializeAsync().ConfigureAwait(false);
         }
     }
 }

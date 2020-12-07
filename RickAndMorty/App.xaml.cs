@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using RickAndMorty.Services.Rest;
+using Xamarin.Forms;
 
 namespace RickAndMorty
 {
@@ -8,10 +9,16 @@ namespace RickAndMorty
         public App()
         {            
             InitializeComponent();
+            DependencyRegister();
             Device.SetFlags(new[] { "Shapes_Experimental" });
             MainPage = new AppShell();
         }
 
+        void DependencyRegister()
+        {
+            DependencyService.RegisterSingleton<ICharacterService>(new CharacterService());
+            DependencyService.RegisterSingleton<IEpisodeService>(new EpisodeService());
+        }
         protected override void OnStart()
         {
             

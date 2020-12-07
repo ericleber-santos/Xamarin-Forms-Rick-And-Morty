@@ -7,7 +7,7 @@ namespace RickAndMorty.Services.Rest
     public interface ICharacterService
     {
         [Get("/character")]
-        Task<CharacterRoot> GetAllCharacters();
+        Task<CharacterRoot> GetAll();
 
         [Get("/character/{id}")]
         Task<CharacterRoot> GetById(int id);

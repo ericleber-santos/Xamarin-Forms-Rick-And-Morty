@@ -20,66 +20,63 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout>
-        <CollectionView Margin="5"
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView Margin="5"
                     x:Name="users"
                     ItemsSource="{Binding EpisodesCollection}"                        
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedEpisode}"                
                     SelectionChangedCommand="{Binding ItemSelectionChangedCommand}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="1"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Frame  HasShadow="True"
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Frame  HasShadow="True"
                             BorderColor="LightSteelBlue" 
                             Padding="5" 
                             CornerRadius="5" 
                             BackgroundColor="Transparent">
-                            <StackLayout Padding="5" Spacing="0">
-                                <FlexLayout Direction="Column" 
+                                <StackLayout Padding="5" Spacing="0">
+                                    <FlexLayout Direction="Column" 
                                         AlignItems="Start" 
                                         JustifyContent="Start">
-                                    <Label  Text="Name:" 
+                                        <Label  Text="Name:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding name}" 
+                                        <Label  Text="{Binding name}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <Label  Text="Email:" 
+                                        <Label  Text="Email:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding air_date}" 
+                                        <Label  Text="{Binding air_date}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <Label  Text="Website:" 
+                                        <Label  Text="Website:" 
                                         FontSize="Small"/>
-                                    <Label  Text="{Binding episode}" 
+                                        <Label  Text="{Binding episode}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                    <!--<Label  Text="{Binding characters}" 
+                                        <!--<Label  Text="{Binding characters}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />-->
-                                    <!--<Image Source="{Binding url}" HeightRequest="100" Aspect="AspectFit"/>-->                                    
-                                    <Label  Text="{Binding created}" 
+                                        <!--<Image Source="{Binding url}" HeightRequest="100" Aspect="AspectFit"/>-->
+                                        <Label  Text="{Binding created}" 
                                         FontSize="Small" 
                                         FontAttributes="Bold" />
-                                </FlexLayout>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <ActivityIndicator x:Name="activityIndicator"
-                       Color="Orange"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="Fill"
-                       IsRunning="{Binding IsBusy}"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </StackLayout>
 </ContentPage>
