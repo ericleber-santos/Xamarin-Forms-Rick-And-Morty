@@ -1,33 +1,38 @@
-﻿using Android.App;
+﻿using Android.Animation;
+using Android.App;
 using Android.Content;
 using Android.OS;
-using AndroidX.AppCompat.App;
+using Com.Airbnb.Lottie;
 
 namespace RickAndMorty.Droid
 {
     [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
-    public class SplashActivity : AppCompatActivity
+    public class SplashActivity : Activity, Animator.IAnimatorListener
     { 
-        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState, persistentState);           
-        }
+            base.OnCreate(savedInstanceState);
 
-        // Launches the startup task
-        protected override void OnResume()
-        {
-            base.OnResume();           
-            SimulateStartup();
+            SetContentView(Resource.Layout.ActivitySplashScreen);
+
+            LottieAnimationView animationView = FindViewById<LottieAnimationView>(Resource.Id.animation_view);
+
+            animationView.AddAnimatorListener(this);
         }
 
         // Prevent the back button from canceling the startup process
         public override void OnBackPressed() { }
+            
 
-        // Simulates background work that happens behind the splash screen
-        void SimulateStartup()
-        {        
+        public void OnAnimationCancel(Animator animation){ }
+
+        public void OnAnimationEnd(Animator animation)
+        {
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-            Finish();
         }
+
+        public void OnAnimationRepeat(Animator animation){ }
+
+        public void OnAnimationStart(Animator animation){ }
     }
 }
