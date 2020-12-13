@@ -90,6 +90,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\mortydanceloader.json" />
     <AndroidAsset Include="Assets\mortycryloader.json" />
+    <AndroidAsset Include="Assets\40342-gears-rotating.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

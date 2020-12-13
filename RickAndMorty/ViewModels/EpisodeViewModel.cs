@@ -63,7 +63,7 @@ namespace RickAndMorty.ViewModels
             IsBusy = true;
 
             EmptyMessage = "Loading...";
-            EmptyImage = "mortycryloader.json";
+            EmptyImage = "mortydanceloader.json";
 
             try
             {

@@ -5,15 +5,12 @@
     android:layout_height="match_parent">
   <com.airbnb.lottie.LottieAnimationView
       android:id="@+id/animation_view"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:lottie_fileName="mortydanceloader.json"           
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      app:lottie_fileName="40342-gears-rotating.json"           
       android:layout_centerHorizontal="true"
-      android:layout_alignParentBottom="true"
-      app:lottie_autoPlay="true"
-      app:lottie_loop ="true"
-      app:lottie_repeatCount="4"
-      android:layout_marginBottom="15dp"/> 
+      android:layout_centerVertical="true"
+      app:lottie_autoPlay="true"/> 
 </RelativeLayout>
 
 

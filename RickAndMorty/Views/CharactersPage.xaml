@@ -34,16 +34,16 @@
                         BackgroundColor="White"
                         HorizontalOptions="FillAndExpand"
                         RowDefinitions="2*, *"
-                        VerticalOptions="Center">
+                        VerticalOptions="Center">                       
 
                         <forms:AnimationView
                             Animation="{Binding EmptyImage}"
                             AutoPlay="True"
-                            HeightRequest="30"
-                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="160"
+                            HorizontalOptions="Center"
                             Loop="True"
-                            VerticalOptions="FillAndExpand"
-                            WidthRequest="30" />
+                            VerticalOptions="Center"
+                            WidthRequest="160" />
 
                         <Label
                             Grid.Row="1"
