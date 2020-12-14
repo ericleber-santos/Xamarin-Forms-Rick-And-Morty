@@ -33,8 +33,8 @@
                         Padding="26"
                         BackgroundColor="White"
                         HorizontalOptions="FillAndExpand"
-                        RowDefinitions="2*, *"
-                        VerticalOptions="Center">                       
+                        RowDefinitions="2*, 50"
+                        VerticalOptions="Center">
 
                         <forms:AnimationView
                             Animation="{Binding EmptyImage}"
@@ -55,13 +55,13 @@
                     </Grid>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="1"/>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="200" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -73,40 +73,49 @@
                                     BackgroundColor="Transparent">
                                 <StackLayout Padding="5" Spacing="0">
                                     <FlexLayout Direction="Column" 
-                                        AlignItems="Start" 
-                                        JustifyContent="Start">
-                                        <Label  Text="Name:" 
-                                        FontSize="Small"/>
+                                                AlignItems="Start" 
+                                                JustifyContent="Start">
+                                        <!--<Label  Text="Name:" 
+                                                FontSize="Small"/>-->
                                         <Label  Text="{Binding name}" 
-                                        FontSize="Small" 
-                                        FontAttributes="Bold" />
-                                        <Label  Text="Email:" 
-                                        FontSize="Small"/>
+                                                FontSize="Small" 
+                                                FontAttributes="Bold" />
+                                        <!--<Label  Text="Status:" 
+                                                FontSize="Small"/>
                                         <Label  Text="{Binding status}" 
-                                        FontSize="Small" 
-                                        FontAttributes="Bold" />
-                                        <Label  Text="Website:" 
-                                        FontSize="Small"/>
+                                                FontSize="Small" 
+                                                FontAttributes="Bold" />
+                                        <Label  Text="Species:" 
+                                                FontSize="Small"/>
                                         <Label  Text="{Binding species}" 
-                                        FontSize="Small" 
-                                        FontAttributes="Bold" />
+                                                FontSize="Small" 
+                                                FontAttributes="Bold" />
+                                        <Label  Text="Type:" 
+                                                FontSize="Small"/>
                                         <Label  Text="{Binding type}" 
-                                        FontSize="Small" 
-                                        FontAttributes="Bold" />
+                                                FontSize="Small" 
+                                                FontAttributes="Bold" />
+                                        <Label  Text="Gender:" 
+                                                FontSize="Small"/>
                                         <Label  Text="{Binding gender}" 
-                                        FontSize="Small" 
-                                        FontAttributes="Bold" />
+                                                FontSize="Small" 
+                                                FontAttributes="Bold" />-->
 
                                         <Image Source="{Binding image}" 
-                                           HeightRequest="100" 
-                                           Aspect="AspectFit"/>
+                                               HeightRequest="150" 
+                                               WidthRequest="150"
+                                               Aspect="AspectFill"/>
 
+                                        <!--<Label  Text="Episode URL:" 
+                                                FontSize="Small"/>
                                         <Label  Text="{Binding url}" 
-                                        FontSize="Small" 
-                                        FontAttributes="Bold" />
+                                                FontSize="Small" 
+                                                FontAttributes="Bold" />
+                                        <Label  Text="Created:" 
+                                                FontSize="Small"/>
                                         <Label  Text="{Binding created}" 
-                                        FontSize="Small" 
-                                        FontAttributes="Bold" />
+                                                FontSize="Small" 
+                                                FontAttributes="Bold" />-->
                                     </FlexLayout>
                                 </StackLayout>
                             </Frame>
