@@ -51,11 +51,11 @@ namespace RickAndMorty.ViewModels
         {
             _characterService = characterService;
             this.CharactersCollection = new ObservableCollection<CharacterResult>();
+            RefreshCommand = new Command(ExecuteRefreshCommand);
         }
 
         public async Task GetAllCharactersAsync()
         {
-
             if (IsBusy)
                 return;
 
@@ -80,10 +80,9 @@ namespace RickAndMorty.ViewModels
             finally
             {
                 IsBusy = false;
+                EmptyMessage = "Oops, episode not found!";
+                EmptyImage = "";
             }
-
-            EmptyMessage = "Oops, character not found!";
-            EmptyImage = "";
         }
 
         async Task ItemSelectionChanged()
@@ -104,7 +103,7 @@ namespace RickAndMorty.ViewModels
 
         private async void ExecuteRefreshCommand()
         {
-            if (IsRefreshing || IsBusy)
+            if (IsBusy)
                 return;
 
             IsRefreshing = true;
@@ -118,6 +117,7 @@ namespace RickAndMorty.ViewModels
         {
             if (CharactersCollection.Any())
                 return;
+
             await GetAllCharactersAsync().ConfigureAwait(false);
         }
 

@@ -113,6 +113,7 @@ namespace RickAndMorty.ViewModels
         {
             if (EpisodesCollection.Any())
                 return;
+
             await GetAllEpisodesAsync().ConfigureAwait(false);
         }
 

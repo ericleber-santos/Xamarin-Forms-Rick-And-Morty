@@ -20,7 +20,7 @@ namespace RickAndMorty.Services.Rest
         {
             try
             {
-                await Task.Delay(20);
+                await Task.Delay(3000);
                 return await _CharacterService.GetAll(); 
             }
             catch (Exception ex)
