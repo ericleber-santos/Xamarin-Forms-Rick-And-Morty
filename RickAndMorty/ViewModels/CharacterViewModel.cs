@@ -1,5 +1,6 @@
 ﻿using RickAndMorty.Models.Json;
 using RickAndMorty.Services.Rest;
+using RickAndMorty.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -92,8 +93,8 @@ namespace RickAndMorty.ViewModels
 
             try
             {
-                //await Shell.Current.Navigation.PushAsync(new EpisodeDetailPage(selectedEpisode), true);
-                //selectedEpisode = null;
+                await Shell.Current.Navigation.PushAsync(new CharactersDetailPage(selectedCharacter), true);
+                selectedCharacter = null;
             }
             catch (Exception e)
             {

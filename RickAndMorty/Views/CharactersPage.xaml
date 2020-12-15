@@ -22,38 +22,33 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout>
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" Margin="10">
+        <RefreshView Command="{Binding RefreshCommand}" 
+                     IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" 
+                     Margin="10">
             <CollectionView Margin="5"
                     x:Name="users"
                     ItemsSource="{Binding CharactersCollection}"                        
                     SelectionMode="Single"
-                    SelectedItem="{Binding SelectedEpisode}"                
+                    SelectedItem="{Binding SelectedCharacter}"                
                     SelectionChangedCommand="{Binding ItemSelectionChangedCommand}">
                 <CollectionView.EmptyView>
-                    <Grid                        
-                        Padding="26"
-                        BackgroundColor="White"
-                        HorizontalOptions="FillAndExpand"
-                        RowDefinitions="2*, 50"
-                        VerticalOptions="Center">
+                   
+                        <FlexLayout  Direction="Column" 
+                                     AlignContent="Center" 
+                                     JustifyContent="SpaceEvenly">
+                            <forms:AnimationView
+                                Animation="{Binding EmptyImage}"
+                                AutoPlay="True"
+                                Loop="True"                            
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" />
 
-                        <forms:AnimationView
-                            Animation="{Binding EmptyImage}"
-                            AutoPlay="True"
-                            HeightRequest="160"
-                            HorizontalOptions="Center"
-                            Loop="True"
-                            VerticalOptions="Center"
-                            WidthRequest="160" />
-
-                        <Label
-                            Grid.Row="1"
-                            FontSize="Large"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding EmptyMessage}"
-                            VerticalOptions="Center" />
-
-                    </Grid>
+                            <Label  Margin="10"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding EmptyMessage}" />
+                        </FlexLayout>
+                   
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2"/>
@@ -71,54 +66,23 @@
                                     BorderColor="LightSteelBlue" 
                                     Padding="5" 
                                     CornerRadius="5" 
-                                    BackgroundColor="Transparent">
-                                <StackLayout Padding="5" Spacing="0">
+                                    BackgroundColor="WhiteSmoke">
                                     <FlexLayout Direction="Column" 
-                                                AlignItems="Start" 
-                                                JustifyContent="Start">
-                                        <!--<Label  Text="Name:" 
-                                                FontSize="Small"/>-->
-                                        <Label  Text="{Binding name}" 
-                                                FontSize="Small" 
-                                                FontAttributes="Bold" />
-                                        <!--<Label  Text="Status:" 
-                                                FontSize="Small"/>
-                                        <Label  Text="{Binding status}" 
-                                                FontSize="Small" 
-                                                FontAttributes="Bold" />
-                                        <Label  Text="Species:" 
-                                                FontSize="Small"/>
-                                        <Label  Text="{Binding species}" 
-                                                FontSize="Small" 
-                                                FontAttributes="Bold" />
-                                        <Label  Text="Type:" 
-                                                FontSize="Small"/>
-                                        <Label  Text="{Binding type}" 
-                                                FontSize="Small" 
-                                                FontAttributes="Bold" />
-                                        <Label  Text="Gender:" 
-                                                FontSize="Small"/>
-                                        <Label  Text="{Binding gender}" 
-                                                FontSize="Small" 
-                                                FontAttributes="Bold" />-->
+                                                AlignItems="Center" 
+                                                JustifyContent="Center">
 
-                                        <Image Source="{Binding image}" 
-                                               HeightRequest="150" 
-                                               WidthRequest="150"
-                                               Aspect="AspectFill"/>
+                                    <Image  Source="{Binding image}"
+                                            Aspect="Fill"
+                                            HeightRequest="150"
+                                            WidthRequest="150"/>
 
-                                        <!--<Label  Text="Episode URL:" 
-                                                FontSize="Small"/>
-                                        <Label  Text="{Binding url}" 
-                                                FontSize="Small" 
-                                                FontAttributes="Bold" />
-                                        <Label  Text="Created:" 
-                                                FontSize="Small"/>
-                                        <Label  Text="{Binding created}" 
-                                                FontSize="Small" 
-                                                FontAttributes="Bold" />-->
-                                    </FlexLayout>
-                                </StackLayout>
+                                    <Label  Text="{Binding name}" 
+                                            FontSize="Small" 
+                                            FontAttributes="Bold" 
+                                            LineBreakMode="NoWrap" 
+                                            HorizontalTextAlignment="Center"/>
+
+                                </FlexLayout>
                             </Frame>
                         </Grid>
                     </DataTemplate>
