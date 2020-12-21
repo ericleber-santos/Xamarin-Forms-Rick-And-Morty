@@ -90,13 +90,13 @@ namespace RickAndMorty.ViewModels
 
         async Task ItemSelectionChanged()
         {
-            if (selectedEpisode == null)
+            if (SelectedEpisode == null)
                 return;
 
             try
             {
-                //await Shell.Current.Navigation.PushAsync(new EpisodeDetailPage(selectedEpisode), true);
-                //selectedEpisode = null;
+                //await Shell.Current.Navigation.PushAsync(new EpisodeDetailPage(SelectedEpisode), true);
+                //SelectedEpisode = null;
             }
             catch (Exception e)
             {
