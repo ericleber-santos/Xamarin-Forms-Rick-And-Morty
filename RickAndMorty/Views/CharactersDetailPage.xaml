@@ -3,11 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RickAndMorty.Views.CharactersDetailPage"
              Title="{Binding Title}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <ScrollView>
+        <StackLayout Orientation="Vertical" Margin="0">
+            <Image  Margin="0"
+                    x:Name="characterImg"
+                    Aspect="Fill"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="400"
+                    Source="{Binding Character.image}"            
+                    VerticalOptions="Start"/>
+
+            <Label Margin="10,0,0,0" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Status: " 
+                              FontAttributes="Bold"
+                              FontSize="Small"/>
+                        <Span Text="{Binding Character.status}" 
+                              FontSize="Small"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Margin="10,0,0,0" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Species: " 
+                              FontAttributes="Bold"
+                              FontSize="Small"/>
+                        <Span Text="{Binding Character.species}" 
+                              FontSize="Small"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Margin="10,0,0,0" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Type: " 
+                              FontAttributes="Bold"
+                              FontSize="Small"/>
+                        <Span Text="{Binding Character.type}" 
+                              FontSize="Small"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Margin="10,0,0,0" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Gender: " 
+                              FontAttributes="Bold"
+                              FontSize="Small"/>
+                        <Span Text="{Binding Character.gender}" 
+                              FontSize="Small"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Margin="10,0,0,0" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Origin: " 
+                              FontAttributes="Bold"
+                              FontSize="Small"/>
+                        <Span Text="{Binding Character.origin.name}" 
+                              FontSize="Small"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Margin="10,0,0,0" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Location: " 
+                              FontAttributes="Bold"
+                              FontSize="Small"/>
+                        <Span Text="{Binding Character.location.name}" 
+                              FontSize="Small"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Margin="10,0,0,0" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Created: " 
+                              FontAttributes="Bold"
+                              FontSize="Small"/>
+                        <Span Text="{Binding Character.created}" 
+                              FontSize="Small"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

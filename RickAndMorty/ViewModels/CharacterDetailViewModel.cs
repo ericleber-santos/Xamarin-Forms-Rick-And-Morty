@@ -4,12 +4,12 @@ namespace RickAndMorty.ViewModels
 {
     public class CharacterDetailViewModel : BaseViewModel
     {
-        private CharacterResult _characterResult;
+        public CharacterResult Character { get; set; } 
 
-        public CharacterDetailViewModel(CharacterResult characterResult)
+        public CharacterDetailViewModel(CharacterResult character)
         {
-            _characterResult = characterResult;
-            Title = characterResult.name;
+            Character = character;
+            Title = character.name;
         }
     }
 }
